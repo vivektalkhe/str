@@ -1,0 +1,222 @@
+CREATE TABLE BusDetails(busId NUMBER PRIMARY KEY, busType VARCHAR(20), fromStop VARCHAR(20),toStop VARCHAR(20),fare DECIMAL, availableSeats NUMBER, dateOfJourney DATE);
+
+INSERT INTO BusDetails VALUES (1,’ac-neeta’,’Mumbai’,’Pune’,420,30,’19-Nov-14’);
+INSERT INTO BusDetails VALUES (2,’shivneri’,’Pune’,’Mumbai’,420,30,’19-Nov-14’);
+INSERT INTO BusDetails VALUES (3,’shivneri’,’Mumbai’,’Chennai’,1000,30,’20-Nov-14’);
+INSERT INTO BusDetails VALUES (4,’ac-neeta’,’Mumbai’,’Chennai’,1000,30,’20-Nov-14’);
+   
+CREATE TABLE BookingDetails(bookingId NUMBER PRIMARY KEY,custId VARCHAR2(10),busId REFERENCES BusDetails(busId),noOfSeats Number);
+
+Note: bookingId should get generated using sequence.
+CREATE SEQUENCE Booking_Id_Seq start with 1001;
+
+
+
+DROP TABLE employees;
+DROP TABLE salgrade;
+
+DROP SEQUENCE empCode_Seq;
+
+
+CREATE TABLE salgrade(grade CHAR(2) PRIMARY KEY, minsal NUMBER, maxsal NUMBER);
+
+CREATE TABLE employees (employee_code NUMBER PRIMARY KEY, employee_name VARCHAR2(15), date_of_joining DATE, employee_salary NUMBER, grade CHAR(2) references salgrade(grade));
+
+INSERT INTO salgrade VALUES('A',10000,20000);
+INSERT INTO salgrade VALUES('B',20001,40000);
+INSERT INTO salgrade VALUES('C',40001,60000);
+
+INSERT INTO employees VALUES(101,'Preetham','10-JAN-2010',18000,'A');
+INSERT INTO employees VALUES(102,'Aakash','10-NOV-2005',48000, 'C');
+INSERT INTO employees VALUES(103,'Kishore','19-DEC-2011',21000,'B');
+INSERT INTO employees VALUES(104,'Reena','23-JUN-2006',42000,'C');
+INSERT INTO employees VALUES(105,'Kailash','05-FEB-2004',46000,'C');
+INSERT INTO employees VALUES(106,'Sahana','18-NOV-2003',52000,'C');
+INSERT INTO employees VALUES(107,'Keerthana','25-JUL-2006',27000,'B');
+
+CREATE SEQUENCE empCode_Seq START WITH 108;
+
+
+
+
+
+
+
+DROP TABLE  electricity_Consumer CASCADE CONSTRAINTS;
+DROP TABLE  Electricity_bill;
+DROP SEQUENCE billid_seq;
+
+CREATE TABLE electricity_Consumer(consumerNo NUMBER(8) PRIMARY KEY,ConsumerName   VARCHAR2 (20) NOT NULL, emailId VARCHAR2(35), UnitsConsumed NUMBER);
+
+CREATE TABLE electricity_Bill(BillNo NUMBER PRIMARY KEY,consumerNo NUMBER REFERENCES electricity_Consumer(consumerno),billAmount NUMBER (6,2),billPaidDate DATE);
+     
+insert into Electricity_consumer values(12322110,'Seema Joshi', 'seema.joshi@capgemini.com', 250);
+
+insert into Electricity_consumer values(17531111,'Amey Joshi','amey.j@
+capgemini.com',345);
+insert into Electricity_consumer values(17533411,'Pravin T','pravin.t@
+gmail.com',457);
+insert into Electricity_consumer values(12432121,'Manoj Kulkarni',                    'manoj.k@gmail.com',780);
+insert into Electricity_consumer values(12342111,'Shrikant Shinde',                    'shrikant.shinde@gmail.com',90);
+insert into Electricity_consumer values(15432152,'Mahesh B',                    'bMahesh@gmail.com',720);
+
+insert into Electricity_bill values(101,15432152,440.45, '25-MAY-2014');
+insert into Electricity_bill values(102, 17533411,652.23,'2-JUN-2015');
+insert into Electricity_bill values(103,15432152,672.11,'5-AUG-2015');
+insert into Electricity_bill values(104, 12432121,450.521,'16-AUG-2014');
+insert into Electricity_bill values(105,12322110,790,'4-FEB-2015');
+insert into Electricity_bill values(106, 12342111,450.521 ,'25-AUG-2015');
+insert into Electricity_bill values(107,12322110,790, '24-FEB-2015');
+insert into Electricity_bill values(108, 17531111 ,650.00 ,'17-JAN-2016');
+insert into Electricity_bill values(109, 17533411,1790 ,'14-OCT-2015');
+insert into Electricity_bill values(110, 17533411,450.521,'15-DEC-2016');
+
+CREATE SEQUENCE BillID_Seq START WITH 111;
+
+
+
+
+
+
+
+
+
+
+
+new:
+
+CREATE TABLE mobiles (mobileid NUMBER PRIMARY KEY, name VARCHAR2 (20), price NUMBER(10,2),quantity VARCHAR2(20));
+
+INSERT INTO mobiles VALUES(1001,’Nokia Lumia 520’,8000,20);
+INSERT INTO mobiles VALUES(1002,’Samsung Galaxy IV’,38000,40);
+INSERT INTO mobiles VALUES(1003,’Sony xperia C’,15000,30);
+//TO DO – INSERT few more mobile details.
+
+CREATE TABLE purchasedetails(purchaseid NUMBER, cname vARCHAR2(20), mailid VARCHAR2(30),phoneno VARCHAR2(20), purchasedate DATE, mobileid references mobiles(mobileid));
+
+CREATE SEQUENCE seq_purchaseid;
+
+
+new:
+
+DROP TABLE employees;
+DROP TABLE salgrade;
+
+DROP SEQUENCE empCode_Seq;
+
+
+CREATE TABLE salgrade(grade CHAR(2) PRIMARY KEY, minsal NUMBER, maxsal NUMBER);
+
+CREATE TABLE employees (employee_code NUMBER PRIMARY KEY, employee_name VARCHAR2(15), date_of_joining DATE, employee_salary NUMBER, grade CHAR(2) references salgrade(grade));
+
+INSERT INTO salgrade VALUES('A',10000,20000);
+INSERT INTO salgrade VALUES('B',20001,40000);
+INSERT INTO salgrade VALUES('C',40001,60000);
+
+INSERT INTO employees VALUES(101,'Preetham','10-JAN-2010',18000,'A');
+INSERT INTO employees VALUES(102,'Aakash','10-NOV-2005',48000, 'C');
+INSERT INTO employees VALUES(103,'Kishore','19-DEC-2011',21000,'B');
+INSERT INTO employees VALUES(104,'Reena','23-JUN-2006',42000,'C');
+INSERT INTO employees VALUES(105,'Kailash','05-FEB-2004',46000,'C');
+INSERT INTO employees VALUES(106,'Sahana','18-NOV-2003',52000,'C');
+INSERT INTO employees VALUES(107,'Keerthana','25-JUL-2006',27000,'B');
+
+CREATE SEQUENCE empCode_Seq START WITH 108;
+
+
+
+
+
+
+
+Module 4:
+
+Create Table Product(product_id number(5) primary key,product_name varchar2(30),product_price Number(10),product_quantity number(5),description varchar2(40));
+insert into Product values (1001,'iPhone',45000,10,'Electronics Equipment From Apple');
+insert into Product values (1002,'Cartoon Shirt',345,15,'Kids wear 4 to 12 Years');
+insert into Product values (1003,'Sofa',20000,12,'HouseHold Furnitures');
+
+commit;
+
+
+m1:
+
+DROP TABLE CUSTOMER CASCADE CONSTRAINTS;
+DROP TABLE ORDERS;
+
+CREATE TABLE CUSTOMER(CUSTOMER_ID NUMBER(3) PRIMARY KEY,CUSTOMER_NAME VARCHAR2(20),PHONE_NUMBER VARCHAR2(10),EMAILID VARCHAR2(25),CITY VARCHAR2(20));
+
+CREATE TABLE ORDERS(ORDER_ID NUMBER(4) PRIMARY KEY,ORDER_DATE DATE,PRODUCT_NAME VARCHAR2(20),PRODUCT_PRICE NUMBER(4),QUANTITY NUMBER(2),CUSTOMER_ID NUMBER(3) REFERENCES CUSTOMER(CUSTOMER_ID));
+
+CREATE SEQUENCE order_id_seq START WITH 1006;
+
+INSERT INTO CUSTOMER VALUES(101,'Robert','9087654321','robertd@gmail.com', 'Mumbai');
+
+INSERT INTO CUSTOMER VALUES(102,'Saket Sharma', '9165432123', 'saketsharma@gmail.com', 'Pune');
+
+INSERT INTO CUSTOMER VALUES(103, 'Raksha','9543212356', 'raksha@gmail.com', 'Mumbai');
+
+INSERT INTO CUSTOMER VALUES(104, 'Adarsh','9964321230', 'adarshs@gmail.com', 'Mumbai');
+
+INSERT INTO CUSTOMER VALUES(105,'Kavya','9543212345','kavya@gmail.com','Pune');
+
+
+INSERT INTO ORDERS VALUES(1001,'22-FEb-2016','Pen Drive',600,3,101);
+INSERT INTO ORDERS VALUES(1002,'05-May-2016','Memory Card',450,2,102);
+INSERT INTO ORDERS VALUES(1003,'12-Mar-2016','Memory Card',450,3,101);
+INSERT INTO ORDERS VALUES(1004,'03-May-2016','Speaker',1200,2,103);
+INSERT INTO ORDERS VALUES(1005,'08-Aug-2016','Memory Card',450,1,105);
+
+COMMIT;
+
+
+
+m3:
+
+CREATE TABLE cricket_score(player_id NUMBER PRIMARY KEY,player_name VARCHAR2(40),dob DATE, country  VARCHAR2(40),batting_style VARCHAR2(20),centuries NUMBER,matches NUMBER, total_run_score NUMBER);
+
+CREATE SEQUENCE player_seq; 
+
+INSERT INTO cricket_score VALUES(player_seq.NEXTVAL,'Sachin Tendulkar', '24-APR-1973','India','Right Handed Batsman',49,463,18426);
+
+INSERT INTO cricket_score VALUES(player_seq.NEXTVAL,'R.T Ponting', '19-DEC-1974','Australia','Left Handed Batsman',30,375,13704);
+INSERT INTO cricket_score VALUES(player_seq.NEXTVAL,'S.T Jayasuriya', '30-JUN-1969','Shrilanka','Right Handed Batsman',28,445,13480);
+
+INSERT INTO cricket_score VALUES(player_seq.NEXTVAL,'S.C Ganguly', '8-JUL-1972','India','Left Handed Batsman',22,311,11363);
+
+COMMIT;
+
+m4:
+Create Table Product(product_id number(5) primary key,product_name varchar2(30),product_price Number(10),product_quantity number(5),description varchar2(40));
+insert into Product values (1001,'iPhone',45000,10,'Electronics Equipment From Apple');
+insert into Product values (1002,'Cartoon Shirt',345,15,'Kids wear 4 to 12 Years');
+insert into Product values (1003,'Sofa',20000,12,'HouseHold Furnitures');
+
+commit;
+
+
+m3:
+
+CREATE TABLE users(name VARCHAR2(40), user_name VARCHAR2(40) PRIMARY KEY, password VARCHAR2(15), mobile_number VARCHAR2(12));
+
+
+CREATE SEQUENCE seq_bills;
+
+
+
+retest:
+
+CREATE TABLE Patient(patient_id NUMBER PRIMARY KEY, patient_name VARCHAR2(20),age NUMBER(3), phone VARCHAR2(10), description VARCHAR2(80),consultation_date DATE);  
+
+CREATE SEQUENCE Patient_Id_Seq
+START WITH 1000;
+
+
+
+
+
+
+
+
+
+  
